@@ -1,0 +1,38 @@
+Source: python-opentelemetry-instrumentation
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-hatchling,
+Standards-Version: 4.7.0
+Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-instrumentation
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-instrumentation
+Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-instrumentation
+
+Package: python3-opentelemetry-instrumentation
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-opentelemetry-api (>= 1.4),
+ python3-opentelemetry-semantic-conventions (>= 0.64b0),
+ python3-packaging (>= 18.0),
+ python3-wrapt (>= 1.0.0),
+Description: OpenTelemetry Python base instrumentation library
+ OpenTelemetry is a collection of tools, APIs, and SDKs used to instrument,
+ generate, collect, and export telemetry data (metrics, logs, and traces).
+ .
+ This package provides the base instrumentation tooling and auto
+ instrumentation entry points (opentelemetry-bootstrap,
+ opentelemetry-instrument) shared by all OpenTelemetry Python
+ instrumentation packages such as opentelemetry-instrumentation-asgi,
+ opentelemetry-instrumentation-httpx and
+ opentelemetry-instrumentation-logging.
+ .
+ This package provides the Python 3 library.
