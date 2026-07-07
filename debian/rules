@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=opentelemetry-instrumentation
+export PYBUILD_DIR=opentelemetry-instrumentation
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_auto_configure:
+	sed -i 's/__version__ = "0\.65b0\.dev"/__version__ = "0.64b0"/' \
+	    opentelemetry-instrumentation/src/opentelemetry/instrumentation/version.py
+	sed -i 's/dynamic = \["version"\]/version = "0.64b0"/' \
+	    opentelemetry-instrumentation/pyproject.toml
+	sed -i '/\[tool\.hatch\.version\]/,/^$$/d' opentelemetry-instrumentation/pyproject.toml
+	sed -i 's/opentelemetry-semantic-conventions == 0\.65b0\.dev/opentelemetry-semantic-conventions >= 0.64b0/' \
+	    opentelemetry-instrumentation/pyproject.toml
+	dh_auto_configure
+
+override_dh_auto_test:
+	# Skip tests - test dependencies not packaged
+
+override_dh_auto_clean:
+	dh_auto_clean
+	git checkout opentelemetry-instrumentation/pyproject.toml opentelemetry-instrumentation/src/opentelemetry/instrumentation/version.py 2>/dev/null || true
