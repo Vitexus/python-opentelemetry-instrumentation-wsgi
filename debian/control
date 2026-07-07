@@ -1,0 +1,32 @@
+Source: python-opentelemetry-util-http
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-hatchling,
+Standards-Version: 4.7.0
+Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/util/opentelemetry-util-http
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-util-http
+Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-util-http
+
+Package: python3-opentelemetry-util-http
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+Description: OpenTelemetry Python web util
+ OpenTelemetry is a collection of tools, APIs, and SDKs used to instrument,
+ generate, collect, and export telemetry data (metrics, logs, and traces).
+ .
+ This package provides shared HTTP utility helpers (URL sanitization,
+ method/status-code normalization) used by OpenTelemetry Python HTTP
+ instrumentations such as opentelemetry-instrumentation-asgi and
+ opentelemetry-instrumentation-httpx.
+ .
+ This package provides the Python 3 library.
