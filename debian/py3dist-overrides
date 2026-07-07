@@ -1,0 +1,3 @@
+opentelemetry_instrumentation python3-opentelemetry-instrumentation
+opentelemetry_semantic_conventions python3-opentelemetry-semantic-conventions
+opentelemetry_util_http python3-opentelemetry-util-http

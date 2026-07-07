@@ -1,0 +1,37 @@
+Source: python-opentelemetry-instrumentation-httpx
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-hatchling,
+Standards-Version: 4.7.0
+Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-httpx
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-instrumentation-httpx
+Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-instrumentation-httpx
+
+Package: python3-opentelemetry-instrumentation-httpx
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-opentelemetry-api (>= 1.12~),
+ python3-opentelemetry-instrumentation (>= 0.64b0),
+ python3-opentelemetry-semantic-conventions (>= 0.64b0),
+ python3-opentelemetry-util-http (>= 0.64b0),
+ python3-wrapt (>= 1.0.0),
+ python3-httpx (>= 0.18.0),
+Description: OpenTelemetry HTTPX instrumentation
+ OpenTelemetry is a collection of tools, APIs, and SDKs used to instrument,
+ generate, collect, and export telemetry data (metrics, logs, and traces).
+ .
+ This package provides automatic instrumentation for the HTTPX HTTP client
+ library, capturing spans for outgoing HTTP requests made via
+ httpx.Client/AsyncClient.
+ .
+ This package provides the Python 3 library.
