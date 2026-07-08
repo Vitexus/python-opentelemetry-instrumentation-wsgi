@@ -1,0 +1,36 @@
+Source: python-opentelemetry-instrumentation-asgi
+Section: python
+Priority: optional
+Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ pybuild-plugin-pyproject,
+ python3-all,
+ python3-hatchling,
+Standards-Version: 4.7.0
+Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-asgi
+Rules-Requires-Root: no
+Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-instrumentation-asgi
+Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-instrumentation-asgi
+
+Package: python3-opentelemetry-instrumentation-asgi
+Architecture: all
+Multi-Arch: foreign
+Depends:
+ ${misc:Depends},
+ ${python3:Depends},
+ python3-asgiref,
+ python3-opentelemetry-api,
+ python3-opentelemetry-instrumentation (>= 0.64b0),
+ python3-opentelemetry-semantic-conventions (>= 0.64b0),
+ python3-opentelemetry-util-http (>= 0.64b0),
+Description: OpenTelemetry Python ASGI instrumentation
+ OpenTelemetry is a collection of tools, APIs, and SDKs used to instrument,
+ generate, collect, and export telemetry data (metrics, logs, and traces).
+ .
+ This package provides automatic instrumentation for ASGI applications
+ (e.g. Starlette, FastAPI) so that incoming requests are traced without
+ code changes to the application.
+ .
+ This package provides the Python 3 library.
