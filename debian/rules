@@ -18,6 +18,13 @@ override_dh_auto_configure:
 	    instrumentation/opentelemetry-instrumentation-httpx/pyproject.toml
 	sed -i 's/opentelemetry-util-http == 0\.65b0\.dev/opentelemetry-util-http >= 0.64b0/' \
 	    instrumentation/opentelemetry-instrumentation-httpx/pyproject.toml
+	# Debian's packaged python3-hatchling (1.27.0) validates classifiers
+	# against an older trove-classifiers list that does not yet know
+	# Python 3.13/3.14, and raises a hard ValueError during the build
+	# backend's metadata step. Strip these unrecognized classifiers; they
+	# carry no functional meaning for the Debian package.
+	sed -i '/"Programming Language :: Python :: 3\.1[34]",/d' \
+	    instrumentation/opentelemetry-instrumentation-httpx/pyproject.toml
 	dh_auto_configure
 
 override_dh_auto_test:
