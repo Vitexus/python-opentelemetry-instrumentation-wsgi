@@ -1,5 +1,5 @@
-python-opentelemetry-instrumentation (0.64b0-1) UNRELEASED; urgency=low
+python-opentelemetry-instrumentation-wsgi (0.64b0-1) UNRELEASED; urgency=low
 
-  * Initial Debian packaging
+  * Initial Debian packaging.
 
- -- Vítězslav Dvořák <info@vitexsoftware.cz>  Wed, 08 Jul 2026 01:00:40 +0200
+ -- Vítězslav Dvořák <info@vitexsoftware.cz>  Mon, 27 Jul 2026 20:03:08 +0200
