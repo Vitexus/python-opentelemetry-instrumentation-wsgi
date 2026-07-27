@@ -1,4 +1,4 @@
-Source: python-opentelemetry-instrumentation-wsgi
+Source: python-opentelemetry-instrumentation-flask
 Section: python
 Priority: optional
 Maintainer: Vítězslav Dvořák <info@vitexsoftware.cz>
@@ -9,12 +9,12 @@ Build-Depends:
  python3-all,
  python3-hatchling,
 Standards-Version: 4.7.0
-Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-wsgi
+Homepage: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask
 Rules-Requires-Root: no
-Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-instrumentation-wsgi
-Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-instrumentation-wsgi
+Vcs-Git: https://github.com/Vitexus/opentelemetry-python-contrib.git -b debian-packaging-instrumentation-flask
+Vcs-Browser: https://github.com/Vitexus/opentelemetry-python-contrib/tree/debian-packaging-instrumentation-flask
 
-Package: python3-opentelemetry-instrumentation-wsgi
+Package: python3-opentelemetry-instrumentation-flask
 Architecture: all
 Multi-Arch: foreign
 Depends:
@@ -22,14 +22,15 @@ Depends:
  ${python3:Depends},
  python3-opentelemetry-api (>= 1.12),
  python3-opentelemetry-instrumentation (>= 0.64b0),
+ python3-opentelemetry-instrumentation-wsgi (>= 0.64b0),
  python3-opentelemetry-semantic-conventions (>= 0.64b0),
  python3-opentelemetry-util-http (>= 0.64b0),
-Description: WSGI Middleware for OpenTelemetry
+ python3-packaging (>= 21.0),
+Description: Flask instrumentation for OpenTelemetry
  OpenTelemetry is a collection of tools, APIs, and SDKs used to instrument,
  generate, collect, and export telemetry data (metrics, logs, and traces).
  .
- This package provides automatic instrumentation for WSGI applications,
- used as the base for opentelemetry-instrumentation-flask and other
- WSGI-based framework instrumentations.
+ This package provides automatic instrumentation for Flask applications,
+ built on top of opentelemetry-instrumentation-wsgi.
  .
  This package provides the Python 3 library.

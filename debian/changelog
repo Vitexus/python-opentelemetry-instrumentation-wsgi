@@ -1,4 +1,4 @@
-python-opentelemetry-instrumentation-wsgi (0.64b0-1) UNRELEASED; urgency=low
+python-opentelemetry-instrumentation-flask (0.64b0-1) UNRELEASED; urgency=low
 
   * Initial Debian packaging.
 
