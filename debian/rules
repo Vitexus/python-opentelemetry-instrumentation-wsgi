@@ -1,34 +1,30 @@
 #!/usr/bin/make -f
 
-# NOTE: opentelemetry-instrumentation-wsgi is a subdirectory of the
+# NOTE: opentelemetry-instrumentation-flask is a subdirectory of the
 # open-telemetry/opentelemetry-python-contrib monorepo
-# (instrumentation/opentelemetry-instrumentation-wsgi/).
+# (instrumentation/opentelemetry-instrumentation-flask/).
 
-export PYBUILD_NAME=opentelemetry-instrumentation-wsgi
-export PYBUILD_DIR=instrumentation/opentelemetry-instrumentation-wsgi
+export PYBUILD_NAME=opentelemetry-instrumentation-flask
+export PYBUILD_DIR=instrumentation/opentelemetry-instrumentation-flask
 
 %:
 	dh $@ --with python3 --buildsystem=pybuild
 
 override_dh_auto_configure:
 	sed -i 's/__version__ = "0\.65b0\.dev"/__version__ = "0.64b0"/' \
-	    instrumentation/opentelemetry-instrumentation-wsgi/src/opentelemetry/instrumentation/wsgi/version.py
+	    instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/version.py
 	sed -i 's/dynamic = \["version"\]/version = "0.64b0"/' \
-	    instrumentation/opentelemetry-instrumentation-wsgi/pyproject.toml
+	    instrumentation/opentelemetry-instrumentation-flask/pyproject.toml
 	sed -i '/\[tool\.hatch\.version\]/,/^$$/d' \
-	    instrumentation/opentelemetry-instrumentation-wsgi/pyproject.toml
+	    instrumentation/opentelemetry-instrumentation-flask/pyproject.toml
 	sed -i \
 	    -e 's/opentelemetry-instrumentation == 0\.65b0\.dev/opentelemetry-instrumentation >= 0.64b0/' \
+	    -e 's/opentelemetry-instrumentation-wsgi == 0\.65b0\.dev/opentelemetry-instrumentation-wsgi >= 0.64b0/' \
 	    -e 's/opentelemetry-semantic-conventions == 0\.65b0\.dev/opentelemetry-semantic-conventions >= 0.64b0/' \
 	    -e 's/opentelemetry-util-http == 0\.65b0\.dev/opentelemetry-util-http >= 0.64b0/' \
-	    instrumentation/opentelemetry-instrumentation-wsgi/pyproject.toml
-	# Debian's packaged python3-hatchling (1.27.0) validates classifiers
-	# against an older trove-classifiers list that does not yet know
-	# Python 3.13/3.14, and raises a hard ValueError during the build
-	# backend's metadata step. Strip these unrecognized classifiers; they
-	# carry no functional meaning for the Debian package.
+	    instrumentation/opentelemetry-instrumentation-flask/pyproject.toml
 	sed -i '/"Programming Language :: Python :: 3\.1[34]",/d' \
-	    instrumentation/opentelemetry-instrumentation-wsgi/pyproject.toml
+	    instrumentation/opentelemetry-instrumentation-flask/pyproject.toml
 	dh_auto_configure
 
 override_dh_auto_test:
@@ -37,6 +33,6 @@ override_dh_auto_test:
 override_dh_auto_clean:
 	dh_auto_clean
 	git checkout \
-	    instrumentation/opentelemetry-instrumentation-wsgi/pyproject.toml \
-	    instrumentation/opentelemetry-instrumentation-wsgi/src/opentelemetry/instrumentation/wsgi/version.py \
+	    instrumentation/opentelemetry-instrumentation-flask/pyproject.toml \
+	    instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/version.py \
 	    2>/dev/null || true
