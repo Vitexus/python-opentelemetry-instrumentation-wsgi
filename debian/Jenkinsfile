@@ -3,14 +3,20 @@
 // Current version of this Pipeline https://github.com/VitexSoftware/BuildImages/blob/main/Test/Jenkinsfile
 
 String[] distributions = [
-			'debian:bookworm',
 			'debian:trixie',
 			// 'debian:forky', // Disabled: Forky is still unstable/research-only.
 			//                 // The full Debian package ecosystem is not yet available for Forky.
 			//                 // Re-enable once the stack builds cleanly for Forky.
-			'ubuntu:jammy',
-			'ubuntu:noble',
-			'ubuntu:resolute',
+			// Scoped to trixie only: repo.vitexsoftware.com does not yet
+			// publish the opentelemetry-python base train (sdk,
+			// instrumentation, semantic-conventions, util-http) for
+			// debian:bookworm, ubuntu:jammy, ubuntu:noble, or
+			// ubuntu:resolute, so those branches fail this job's Test
+			// stage unconditionally and abort the whole pipeline before
+			// the Publish stage runs (same gap documented in
+			// debian-packaging-sdk's Jenkinsfile). trixie is the
+			// primary target distro (mcprack-dev/vyvojar.spoje.net runs
+			// trixie); re-add the others once that gap is closed.
 ]
 
 String vendor = 'vitexsoftware'
